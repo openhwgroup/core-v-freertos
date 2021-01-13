@@ -35,11 +35,6 @@ endif
 # make sure we compile by default
 .DEFAULT_GOAL := all
 
-# dpi specific build targets
-# ifeq ($(DPI),yes)
-include $(SUPPORT_ROOT)/support.mk
-# endif
-
 # derived variables for compiling
 SRCS += $(RTOS_SRCS) $(USER_SRCS)
 OBJS = $(addsuffix .o, $(basename $(SRCS))) # .S and .c replaced
