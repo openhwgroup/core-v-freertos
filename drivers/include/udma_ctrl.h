@@ -26,6 +26,7 @@
 #include "target.h"
 #include "memory_map.h"
 #include "soc_eu.h"
+#include "bits.h"
 
 /** UDMA Global configuration - Register Layout Typedef */
 typedef struct {
@@ -39,27 +40,15 @@ typedef struct {
  * to UDMA as reference events, support up to 4 choices */
 #define UDMA_GC_EVTIN_CHOICE0_MASK  (0xFFU)
 #define UDMA_GC_EVTIN_CHOICE0_SHIFT (0U)
-#define UDMA_GC_EVTIN_CHOICE0(x)                                               \
-	(((uint32_t)(((uint32_t)(x)) << UDMA_GC_EVTIN_CHOICE0_SHIFT)) &        \
-	 UDMA_GC_EVTIN_CHOICE0_MASK)
 
 #define UDMA_GC_EVTIN_CHOICE1_MASK  (0xFF00U)
 #define UDMA_GC_EVTIN_CHOICE1_SHIFT (8U)
-#define UDMA_GC_EVTIN_CHOICE1(x)                                               \
-	(((uint32_t)(((uint32_t)(x)) << UDMA_GC_EVTIN_CHOICE1_SHIFT)) &        \
-	 UDMA_GC_EVTIN_CHOICE1_MASK)
 
 #define UDMA_GC_EVTIN_CHOICE2_MASK  (0xFF0000U)
 #define UDMA_GC_EVTIN_CHOICE2_SHIFT (16U)
-#define UDMA_GC_EVTIN_CHOICE2(x)                                               \
-	(((uint32_t)(((uint32_t)(x)) << UDMA_GC_EVTIN_CHOICE2_SHIFT)) &        \
-	 UDMA_GC_EVTIN_CHOICE2_MASK)
 
 #define UDMA_GC_EVTIN_CHOICE3_MASK  (0xFF000000)
 #define UDMA_GC_EVTIN_CHOICE3_SHIFT (24U)
-#define UDMA_GC_EVTIN_CHOICE3(x)                                               \
-	(((uint32_t)(((uint32_t)(x)) << UDMA_GC_EVTIN_CHOICE3_SHIFT)) &        \
-	 UDMA_GC_EVTIN_CHOICE3_MASK)
 
 #define UDMA_GC_EVTIN_MASK(evt_in) (evt_in & 0xFF)
 #define UDMA_GC_EVTIN_SHIFT_ID(id) (id * 8)

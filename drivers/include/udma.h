@@ -46,18 +46,10 @@ typedef enum {
   - Write: set Address Pointer to memory buffer start address */
 #define UDMA_CORE_RX_SADDR_RX_SADDR_MASK  (0x1fffff)
 #define UDMA_CORE_RX_SADDR_RX_SADDR_SHIFT (0)
-#define UDMA_CORE_RX_SADDR_RX_SADDR(val)                                       \
-	(((uint32_t)(((uint32_t)(val))                                         \
-		     << UDMA_CORE_RX_SADDR_RX_SADDR_SHIFT)) &                  \
-	 UDMA_CORE_RX_SADDR_RX_SADDR_MASK)
 
 /* Reserved/Not used. */
 #define UDMA_CORE_RX_SADDR_RESERVED_0_MASK  (0xffe00000)
 #define UDMA_CORE_RX_SADDR_RESERVED_0_SHIFT (21)
-#define UDMA_CORE_RX_SADDR_RESERVED_0(val)                                     \
-	(((uint32_t)(((uint32_t)(val))                                         \
-		     << UDMA_CORE_RX_SADDR_RESERVED_0_SHIFT)) &                \
-	 UDMA_CORE_RX_SADDR_RESERVED_0_MASK)
 
 
 /*! @name RX_SIZE */
@@ -66,17 +58,10 @@ typedef enum {
   - Write: set buffer size */
 #define UDMA_CORE_RX_SIZE_RX_SIZE_MASK	(0xfffff)
 #define UDMA_CORE_RX_SIZE_RX_SIZE_SHIFT (0)
-#define UDMA_CORE_RX_SIZE_RX_SIZE(val)                                         \
-	(((uint32_t)(((uint32_t)(val)) << UDMA_CORE_RX_SIZE_RX_SIZE_SHIFT)) &  \
-	 UDMA_CORE_RX_SIZE_RX_SIZE_MASK)
 
 /* Reserved/Not used. */
 #define UDMA_CORE_RX_SIZE_RESERVED_0_MASK  (0xfff00000)
 #define UDMA_CORE_RX_SIZE_RESERVED_0_SHIFT (20)
-#define UDMA_CORE_RX_SIZE_RESERVED_0(val)                                      \
-	(((uint32_t)(((uint32_t)(val))                                         \
-		     << UDMA_CORE_RX_SIZE_RESERVED_0_SHIFT)) &                 \
-	 UDMA_CORE_RX_SIZE_RESERVED_0_MASK)
 
 
 /*! @name RX_CFG */
@@ -87,9 +72,6 @@ typedef enum {
   new transfer. */
 #define UDMA_CORE_RX_CFG_CONTINOUS_MASK	 (0x1)
 #define UDMA_CORE_RX_CFG_CONTINOUS_SHIFT (0)
-#define UDMA_CORE_RX_CFG_CONTINOUS(val)                                        \
-	(((uint32_t)(((uint32_t)(val)) << UDMA_CORE_RX_CFG_CONTINOUS_SHIFT)) & \
-	 UDMA_CORE_RX_CFG_CONTINOUS_MASK)
 
 /* Channel transfer size used to increment uDMA buffer address pointer:
   - 2'b00: +1 (8 bits)
@@ -98,17 +80,10 @@ typedef enum {
   - 2'b11: +0 */
 #define UDMA_CORE_RX_CFG_DATASIZE_MASK	(0x6)
 #define UDMA_CORE_RX_CFG_DATASIZE_SHIFT (1)
-#define UDMA_CORE_RX_CFG_DATASIZE(val)                                         \
-	(((uint32_t)(((uint32_t)(val)) << UDMA_CORE_RX_CFG_DATASIZE_SHIFT)) &  \
-	 UDMA_CORE_RX_CFG_DATASIZE_MASK)
 
 /* Reserved/Not used. */
 #define UDMA_CORE_RX_CFG_RESERVED_0_MASK  (0x8)
 #define UDMA_CORE_RX_CFG_RESERVED_0_SHIFT (3)
-#define UDMA_CORE_RX_CFG_RESERVED_0(val)                                       \
-	(((uint32_t)(((uint32_t)(val))                                         \
-		     << UDMA_CORE_RX_CFG_RESERVED_0_SHIFT)) &                  \
-	 UDMA_CORE_RX_CFG_RESERVED_0_MASK)
 
 /* Channel enable and start transfer:
   - 1'b0: disable
@@ -116,45 +91,28 @@ typedef enum {
   This signal is used also to queue a transfer if one is already ongoing. */
 #define UDMA_CORE_RX_CFG_EN_MASK  (0x10)
 #define UDMA_CORE_RX_CFG_EN_SHIFT (4)
-#define UDMA_CORE_RX_CFG_EN(val)                                               \
-	(((uint32_t)(((uint32_t)(val)) << UDMA_CORE_RX_CFG_EN_SHIFT)) &        \
-	 UDMA_CORE_RX_CFG_EN_MASK)
 
 /* Transfer pending in queue status flag:
   - 1'b0: no pending transfer in the queue
   - 1'b1: pending transfer in the queue */
 #define UDMA_CORE_RX_CFG_PENDING_MASK  (0x20)
 #define UDMA_CORE_RX_CFG_PENDING_SHIFT (5)
-#define UDMA_CORE_RX_CFG_PENDING(val)                                          \
-	(((uint32_t)(((uint32_t)(val)) << UDMA_CORE_RX_CFG_PENDING_SHIFT)) &   \
-	 UDMA_CORE_RX_CFG_PENDING_MASK)
 
 /* Channel clear and stop transfer:
   - 1'b0: disable
   - 1'b1: stop and clear the on-going transfer */
 #define UDMA_CORE_RX_CFG_CLR_MASK  (0x40)
 #define UDMA_CORE_RX_CFG_CLR_SHIFT (6)
-#define UDMA_CORE_RX_CFG_CLR(val)                                              \
-	(((uint32_t)(((uint32_t)(val)) << UDMA_CORE_RX_CFG_CLR_SHIFT)) &       \
-	 UDMA_CORE_RX_CFG_CLR_MASK)
 
 /* Reserved/Not used. */
 #define UDMA_CORE_RX_CFG_RESERVED_1_MASK  (0xffffff80)
 #define UDMA_CORE_RX_CFG_RESERVED_1_SHIFT (7)
-#define UDMA_CORE_RX_CFG_RESERVED_1(val)                                       \
-	(((uint32_t)(((uint32_t)(val))                                         \
-		     << UDMA_CORE_RX_CFG_RESERVED_1_SHIFT)) &                  \
-	 UDMA_CORE_RX_CFG_RESERVED_1_MASK)
 
 
 /*! @name RX_INITCFG */
 /* Reserved/Not used. */
 #define UDMA_CORE_RX_INITCFG_RESERVED_0_MASK  (0xffffffff)
 #define UDMA_CORE_RX_INITCFG_RESERVED_0_SHIFT (0)
-#define UDMA_CORE_RX_INITCFG_RESERVED_0(val)                                   \
-	(((uint32_t)(((uint32_t)(val))                                         \
-		     << UDMA_CORE_RX_INITCFG_RESERVED_0_SHIFT)) &              \
-	 UDMA_CORE_RX_INITCFG_RESERVED_0_MASK)
 
 
 /*! @name TX_SADDR */
@@ -163,18 +121,10 @@ typedef enum {
   - Write: set Address Pointer to memory buffer start address */
 #define UDMA_CORE_TX_SADDR_TX_SADDR_MASK  (0x1fffff)
 #define UDMA_CORE_TX_SADDR_TX_SADDR_SHIFT (0)
-#define UDMA_CORE_TX_SADDR_TX_SADDR(val)                                       \
-	(((uint32_t)(((uint32_t)(val))                                         \
-		     << UDMA_CORE_TX_SADDR_TX_SADDR_SHIFT)) &                  \
-	 UDMA_CORE_TX_SADDR_TX_SADDR_MASK)
 
 /* Reserved/Not used. */
 #define UDMA_CORE_TX_SADDR_RESERVED_0_MASK  (0xffe00000)
 #define UDMA_CORE_TX_SADDR_RESERVED_0_SHIFT (21)
-#define UDMA_CORE_TX_SADDR_RESERVED_0(val)                                     \
-	(((uint32_t)(((uint32_t)(val))                                         \
-		     << UDMA_CORE_TX_SADDR_RESERVED_0_SHIFT)) &                \
-	 UDMA_CORE_TX_SADDR_RESERVED_0_MASK)
 
 
 /*! @name TX_SIZE */
@@ -183,17 +133,10 @@ typedef enum {
   - Write: set buffer size */
 #define UDMA_CORE_TX_SIZE_TX_SIZE_MASK	(0xfffff)
 #define UDMA_CORE_TX_SIZE_TX_SIZE_SHIFT (0)
-#define UDMA_CORE_TX_SIZE_TX_SIZE(val)                                         \
-	(((uint32_t)(((uint32_t)(val)) << UDMA_CORE_TX_SIZE_TX_SIZE_SHIFT)) &  \
-	 UDMA_CORE_TX_SIZE_TX_SIZE_MASK)
 
 /* Reserved/Not used. */
 #define UDMA_CORE_TX_SIZE_RESERVED_0_MASK  (0xfff00000)
 #define UDMA_CORE_TX_SIZE_RESERVED_0_SHIFT (20)
-#define UDMA_CORE_TX_SIZE_RESERVED_0(val)                                      \
-	(((uint32_t)(((uint32_t)(val))                                         \
-		     << UDMA_CORE_TX_SIZE_RESERVED_0_SHIFT)) &                 \
-	 UDMA_CORE_TX_SIZE_RESERVED_0_MASK)
 
 
 /*! @name TX_CFG */
@@ -204,9 +147,6 @@ typedef enum {
   new transfer. */
 #define UDMA_CORE_TX_CFG_CONTINOUS_MASK	 (0x1)
 #define UDMA_CORE_TX_CFG_CONTINOUS_SHIFT (0)
-#define UDMA_CORE_TX_CFG_CONTINOUS(val)                                        \
-	(((uint32_t)(((uint32_t)(val)) << UDMA_CORE_TX_CFG_CONTINOUS_SHIFT)) & \
-	 UDMA_CORE_TX_CFG_CONTINOUS_MASK)
 
 /* Channel transfer size used to increment uDMA buffer address pointer:
   - 2'b00: +1 (8 bits)
@@ -215,17 +155,10 @@ typedef enum {
   - 2'b11: +0 */
 #define UDMA_CORE_TX_CFG_DATASIZE_MASK	(0x6)
 #define UDMA_CORE_TX_CFG_DATASIZE_SHIFT (1)
-#define UDMA_CORE_TX_CFG_DATASIZE(val)                                         \
-	(((uint32_t)(((uint32_t)(val)) << UDMA_CORE_TX_CFG_DATASIZE_SHIFT)) &  \
-	 UDMA_CORE_TX_CFG_DATASIZE_MASK)
 
 /* Reserved/Not used. */
 #define UDMA_CORE_TX_CFG_RESERVED_0_MASK  (0x8)
 #define UDMA_CORE_TX_CFG_RESERVED_0_SHIFT (3)
-#define UDMA_CORE_TX_CFG_RESERVED_0(val)                                       \
-	(((uint32_t)(((uint32_t)(val))                                         \
-		     << UDMA_CORE_TX_CFG_RESERVED_0_SHIFT)) &                  \
-	 UDMA_CORE_TX_CFG_RESERVED_0_MASK)
 
 /* Channel enable and start transfer:
   - 1'b0: disable
@@ -233,45 +166,27 @@ typedef enum {
   This signal is used also to queue a transfer if one is already ongoing. */
 #define UDMA_CORE_TX_CFG_EN_MASK  (0x10)
 #define UDMA_CORE_TX_CFG_EN_SHIFT (4)
-#define UDMA_CORE_TX_CFG_EN(val)                                               \
-	(((uint32_t)(((uint32_t)(val)) << UDMA_CORE_TX_CFG_EN_SHIFT)) &        \
-	 UDMA_CORE_TX_CFG_EN_MASK)
 
 /* Transfer pending in queue status flag:
   - 1'b0: no pending transfer in the queue
   - 1'b1: pending transfer in the queue */
 #define UDMA_CORE_TX_CFG_PENDING_MASK  (0x20)
 #define UDMA_CORE_TX_CFG_PENDING_SHIFT (5)
-#define UDMA_CORE_TX_CFG_PENDING(val)                                          \
-	(((uint32_t)(((uint32_t)(val)) << UDMA_CORE_TX_CFG_PENDING_SHIFT)) &   \
-	 UDMA_CORE_TX_CFG_PENDING_MASK)
 
 /* Channel clear and stop transfer:
   - 1'b0: disable
   - 1'b1: stop and clear the on-going transfer */
 #define UDMA_CORE_TX_CFG_CLR_MASK  (0x40)
 #define UDMA_CORE_TX_CFG_CLR_SHIFT (6)
-#define UDMA_CORE_TX_CFG_CLR(val)                                              \
-	(((uint32_t)(((uint32_t)(val)) << UDMA_CORE_TX_CFG_CLR_SHIFT)) &       \
-	 UDMA_CORE_TX_CFG_CLR_MASK)
 
 /* Reserved/Not used. */
 #define UDMA_CORE_TX_CFG_RESERVED_1_MASK  (0xffffff80)
 #define UDMA_CORE_TX_CFG_RESERVED_1_SHIFT (7)
-#define UDMA_CORE_TX_CFG_RESERVED_1(val)                                       \
-	(((uint32_t)(((uint32_t)(val))                                         \
-		     << UDMA_CORE_TX_CFG_RESERVED_1_SHIFT)) &                  \
-	 UDMA_CORE_TX_CFG_RESERVED_1_MASK)
-
 
 /*! @name TX_INITCFG */
 /* Reserved/Not used. */
 #define UDMA_CORE_TX_INITCFG_RESERVED_0_MASK  (0xffffffff)
 #define UDMA_CORE_TX_INITCFG_RESERVED_0_SHIFT (0)
-#define UDMA_CORE_TX_INITCFG_RESERVED_0(val)                                   \
-	(((uint32_t)(((uint32_t)(val))                                         \
-		     << UDMA_CORE_TX_INITCFG_RESERVED_0_SHIFT)) &              \
-	 UDMA_CORE_TX_INITCFG_RESERVED_0_MASK)
 
 
 #define UDMA_CORE_CFG_DATASIZE_8  (0x0)

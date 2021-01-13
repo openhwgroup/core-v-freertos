@@ -23,6 +23,7 @@
 #include "uart_periph.h"
 #include "udma_core.h"
 #include "udma_ctrl.h"
+#include "bits.h"
 
 /*
  * pi_task:
@@ -78,57 +79,59 @@ static inline uint32_t uart_setup_get(uint32_t device_id)
 /* Parity setup. */
 static inline void hal_uart_parity_enable(uint32_t device_id)
 {
-	uart_setup_set(device_id,
-		       (uart_setup_get(device_id) | UART_SETUP_PARITY_ENA(1)));
+	uart_setup_set(device_id, (uart_setup_get(device_id) |
+				   REG_SET(UART_SETUP_PARITY_ENA, 1)));
 }
 
 static inline void hal_uart_parity_disable(uint32_t device_id)
 {
-	uart_setup_set(device_id,
-		       (uart_setup_get(device_id) & ~UART_SETUP_PARITY_ENA(1)));
+	uart_setup_set(device_id, (uart_setup_get(device_id) &
+				   ~REG_SET(UART_SETUP_PARITY_ENA, 1)));
 }
 
 /* Word size. */
 static inline void hal_uart_bit_length_set(uint32_t device_id,
 					   uint8_t bit_length)
 {
-	uart_setup_set(device_id, (uart_setup_get(device_id) &
-				   ~UART_SETUP_BIT_LENGTH_MASK) |
-					  UART_SETUP_BIT_LENGTH(bit_length));
+	uart_setup_set(device_id,
+		       (uart_setup_get(device_id) &
+			~UART_SETUP_BIT_LENGTH_MASK) |
+			       REG_SET(UART_SETUP_BIT_LENGTH, bit_length));
 }
 
 /* Stop bits. */
 static inline void hal_uart_stop_bits_set(uint32_t device_id, uint8_t stop_bits)
 {
-	uart_setup_set(device_id, (uart_setup_get(device_id) &
-				   ~UART_SETUP_STOP_BITS_MASK) |
-					  UART_SETUP_STOP_BITS(stop_bits));
+	uart_setup_set(device_id,
+		       (uart_setup_get(device_id) &
+			~UART_SETUP_STOP_BITS_MASK) |
+			       REG_SET(UART_SETUP_STOP_BITS, stop_bits));
 }
 
 /* TX enable. */
 static inline void hal_uart_tx_enable(uint32_t device_id)
 {
-	uart_setup_set(device_id,
-		       (uart_setup_get(device_id) | UART_SETUP_TX_ENA(1)));
+	uart_setup_set(device_id, (uart_setup_get(device_id) |
+				   REG_SET(UART_SETUP_TX_ENA, 1)));
 }
 
 static inline void hal_uart_tx_disable(uint32_t device_id)
 {
-	uart_setup_set(device_id,
-		       (uart_setup_get(device_id) & ~UART_SETUP_TX_ENA(1)));
+	uart_setup_set(device_id, (uart_setup_get(device_id) &
+				   ~REG_SET(UART_SETUP_TX_ENA, 1)));
 }
 
 /* RX enable. */
 static inline void hal_uart_rx_enable(uint32_t device_id)
 {
-	uart_setup_set(device_id,
-		       (uart_setup_get(device_id) | UART_SETUP_RX_ENA(1)));
+	uart_setup_set(device_id, (uart_setup_get(device_id) |
+				   REG_SET(UART_SETUP_RX_ENA, 1)));
 }
 
 static inline void hal_uart_rx_disable(uint32_t device_id)
 {
-	uart_setup_set(device_id,
-		       (uart_setup_get(device_id) & ~UART_SETUP_RX_ENA(1)));
+	uart_setup_set(device_id, (uart_setup_get(device_id) &
+				   ~REG_SET(UART_SETUP_RX_ENA, 1)));
 }
 
 /* Clock divider setup. */
@@ -136,7 +139,7 @@ static inline void hal_uart_clkdiv_set(uint32_t device_id, uint16_t clk_div)
 {
 	uart_setup_set(device_id,
 		       (uart_setup_get(device_id) & ~UART_SETUP_CLKDIV_MASK) |
-			       UART_SETUP_CLKDIV(clk_div));
+			       REG_SET(UART_SETUP_CLKDIV, clk_div));
 }
 
 /* Setup UART. */
@@ -145,11 +148,12 @@ static inline void hal_uart_setup_set(uint32_t device_id, uint16_t clk_div,
 				      uint8_t stop_bits, uint8_t bit_length,
 				      uint8_t parity_ena)
 {
-	uint32_t setup = UART_SETUP_CLKDIV(clk_div) |
-			 UART_SETUP_RX_ENA(rx_ena) | UART_SETUP_TX_ENA(tx_ena) |
-			 UART_SETUP_STOP_BITS(stop_bits) |
-			 UART_SETUP_BIT_LENGTH(bit_length) |
-			 UART_SETUP_PARITY_ENA(parity_ena);
+	uint32_t setup = REG_SET(UART_SETUP_CLKDIV, clk_div) |
+			 REG_SET(UART_SETUP_RX_ENA, rx_ena) |
+			 REG_SET(UART_SETUP_TX_ENA, tx_ena) |
+			 REG_SET(UART_SETUP_STOP_BITS, stop_bits) |
+			 REG_SET(UART_SETUP_BIT_LENGTH, bit_length) |
+			 REG_SET(UART_SETUP_PARITY_ENA, parity_ena);
 	uart_setup_set(device_id, setup);
 }
 
@@ -176,7 +180,7 @@ static inline void hal_uart_enqueue(uint32_t device_id, uint32_t l2_buf,
 				    uint32_t size, uint32_t cfg,
 				    udma_channel_e channel)
 {
-	cfg |= UDMA_CORE_RX_CFG_EN(1);
+	cfg |= REG_SET(UDMA_CORE_RX_CFG_EN, 1);
 	uart_udma_channel_set(device_id, l2_buf, size, cfg, channel);
 }
 

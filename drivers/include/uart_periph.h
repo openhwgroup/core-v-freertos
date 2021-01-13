@@ -34,23 +34,14 @@ typedef struct {
 /* TX busy status flag */
 #define UART_STATUS_TX_BUSY_MASK  (0x1)
 #define UART_STATUS_TX_BUSY_SHIFT (0)
-#define UART_STATUS_TX_BUSY(val)                                               \
-	(((uint32_t)(((uint32_t)(val)) << UART_STATUS_TX_BUSY_SHIFT)) &        \
-	 UART_STATUS_TX_BUSY_MASK)
 
 /* RX busy status flag */
 #define UART_STATUS_RX_BUSY_MASK  (0x2)
 #define UART_STATUS_RX_BUSY_SHIFT (1)
-#define UART_STATUS_RX_BUSY(val)                                               \
-	(((uint32_t)(((uint32_t)(val)) << UART_STATUS_RX_BUSY_SHIFT)) &        \
-	 UART_STATUS_RX_BUSY_MASK)
 
 /* RX parity error status flag */
 #define UART_STATUS_RX_PE_MASK	(0x4)
 #define UART_STATUS_RX_PE_SHIFT (2)
-#define UART_STATUS_RX_PE(val)                                                 \
-	(((uint32_t)(((uint32_t)(val)) << UART_STATUS_RX_PE_SHIFT)) &          \
-	 UART_STATUS_RX_PE_MASK)
 
 
 /*! @name SETUP */
@@ -59,9 +50,6 @@ typedef struct {
   - 1'b1: enable */
 #define UART_SETUP_PARITY_ENA_MASK  (0x1)
 #define UART_SETUP_PARITY_ENA_SHIFT (0)
-#define UART_SETUP_PARITY_ENA(val)                                             \
-	(((uint32_t)(((uint32_t)(val)) << UART_SETUP_PARITY_ENA_SHIFT)) &      \
-	 UART_SETUP_PARITY_ENA_MASK)
 
 /* Set character length:
   - 2'b00: 5 bits
@@ -70,43 +58,28 @@ typedef struct {
   - 2'b11: 8 bits */
 #define UART_SETUP_BIT_LENGTH_MASK  (0x6)
 #define UART_SETUP_BIT_LENGTH_SHIFT (1)
-#define UART_SETUP_BIT_LENGTH(val)                                             \
-	(((uint32_t)(((uint32_t)(val)) << UART_SETUP_BIT_LENGTH_SHIFT)) &      \
-	 UART_SETUP_BIT_LENGTH_MASK)
 
 /* Set stop bits length:
   - 2'b0: 1 stop bit
   - 2'b1: 2 stop bits */
 #define UART_SETUP_STOP_BITS_MASK  (0x8)
 #define UART_SETUP_STOP_BITS_SHIFT (3)
-#define UART_SETUP_STOP_BITS(val)                                              \
-	(((uint32_t)(((uint32_t)(val)) << UART_SETUP_STOP_BITS_SHIFT)) &       \
-	 UART_SETUP_STOP_BITS_MASK)
 
 /* Set TX transceiver state:
   - 1'b0: disable
   - 1'b1: enable */
 #define UART_SETUP_TX_ENA_MASK	(0x100)
 #define UART_SETUP_TX_ENA_SHIFT (8)
-#define UART_SETUP_TX_ENA(val)                                                 \
-	(((uint32_t)(((uint32_t)(val)) << UART_SETUP_TX_ENA_SHIFT)) &          \
-	 UART_SETUP_TX_ENA_MASK)
 
 /* Set RX transceiver state:
   - 1'b0: disable
   - 1'b1: enable */
 #define UART_SETUP_RX_ENA_MASK	(0x200)
 #define UART_SETUP_RX_ENA_SHIFT (9)
-#define UART_SETUP_RX_ENA(val)                                                 \
-	(((uint32_t)(((uint32_t)(val)) << UART_SETUP_RX_ENA_SHIFT)) &          \
-	 UART_SETUP_RX_ENA_MASK)
 
 /* Sets the clock divider ratio for the baud rate generator. */
 #define UART_SETUP_CLKDIV_MASK	(0xffff0000)
 #define UART_SETUP_CLKDIV_SHIFT (16)
-#define UART_SETUP_CLKDIV(val)                                                 \
-	(((uint32_t)(((uint32_t)(val)) << UART_SETUP_CLKDIV_SHIFT)) &          \
-	 UART_SETUP_CLKDIV_MASK)
 
 
 #define uart(id) ((uart_t *)UDMA_UART(id))

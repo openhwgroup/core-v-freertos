@@ -51,7 +51,7 @@ static inline void udma_enqueue_channel(udma_channel_t *chan, uint32_t addr,
 static inline void udma_channel_clear(udma_channel_t *chan)
 {
 	/* TODO: adjust macro */
-	hal_write32(&(chan->cfg), UDMA_CORE_RX_CFG_CLR(1));
+	hal_write32(&(chan->cfg), REG_SET(UDMA_CORE_RX_CFG_CLR, 1));
 }
 
 static inline void udma_deinit_device(uint32_t device_id)
