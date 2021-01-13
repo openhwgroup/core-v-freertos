@@ -32,7 +32,7 @@ typedef struct {
 	volatile uint32_t CG; /**< UDMA_GC clock gating register, offset: 0x0 */
 	volatile uint32_t EVTIN; /**< UDMA_GC input event register, offset: 0x04
 				  */
-} UDMA_GC_Type;
+} udma_gc_t;
 
 
 /*! @name UDMA_GC - UDMA event in register, User chooses which events can come
@@ -68,7 +68,7 @@ typedef struct {
 /* UDMA Global configuration - instance base addresses */
 /** Global configuration UDMA base address */
 #define UDMA_GC_BASE (UDMA_CTRL_ADDR)
-#define UDMA_GC	     ((UDMA_GC_Type *)UDMA_GC_BASE)
+#define UDMA_GC	     ((udma_gc_t *)UDMA_GC_BASE)
 
 
 static inline uint32_t udma_ctrl_get_clock_gating_register(void)

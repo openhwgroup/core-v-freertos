@@ -106,7 +106,7 @@ void pulp_irq_init();
 #define NUMBER_OF_INT_VECTORS                                                  \
 	32 /**< Number of interrupts in the Vector table */
 
-typedef enum IRQn {
+typedef enum {
 	FC_NOTIFY_CLUSTER_EVENT = 0,   /**< Software event interrupt */
 	CLUSTER_NOTIFY_FC_EVENT = 1,   /**< Software event interrupt */
 	FC_SW_NOTIFY_BRIDGE_EVENT = 2, /**< Software event interrupt */
