@@ -54,10 +54,10 @@ endif
 
 
 # good defaults for many environment variables
-include $(FREERTOS_PROJ_ROOT)/common/default_flags.mk
+include $(FREERTOS_PROJ_ROOT)/default_flags.mk
 
 # rtos and pulp sources, minimal
-include $(FREERTOS_PROJ_ROOT)/common/freertos_metal_srcs.mk
+include $(FREERTOS_PROJ_ROOT)/metal_srcs.mk
 
 # application name
 PROG = helloworld
@@ -71,4 +71,4 @@ CPPFLAGS += $(addprefix -I$(VPATH)/, ".")
 CPPFLAGS += -DportasmHANDLE_INTERRUPT=undefined_handler
 
 # compile, simulation and analysis targets
-include $(FREERTOS_PROJ_ROOT)/common/default_targets.mk
+include $(FREERTOS_PROJ_ROOT)/default_targets.mk

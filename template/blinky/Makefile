@@ -52,10 +52,10 @@ $(error "FREERTOS_PROJ_ROOT is unset. Run `source env/platform-you-want.sh' \
 endif
 
 # good defaults for many environment variables
-include $(FREERTOS_PROJ_ROOT)/common/default_flags.mk
+include $(FREERTOS_PROJ_ROOT)/default_flags.mk
 
 # rtos and pulp sources
-include $(FREERTOS_PROJ_ROOT)/common/freertos_metal_srcs.mk
+include $(FREERTOS_PROJ_ROOT)/metal_srcs.mk
 
 # application name
 PROG = blinky
@@ -71,4 +71,4 @@ CPPFLAGS += -DportasmHANDLE_INTERRUPT=vSystemIrqHandler
 CPPFLAGS += -DmainCREATE_SIMPLE_BLINKY_DEMO_ONLY=1
 
 # compile, simulation and analysis targets
-include $(FREERTOS_PROJ_ROOT)/common/default_targets.mk
+include $(FREERTOS_PROJ_ROOT)/default_targets.mk
