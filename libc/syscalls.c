@@ -37,11 +37,14 @@
 
 /* C lib */
 #include <sys/stat.h>
+#include <sys/timeb.h>
+#include <sys/time.h>
 #include <newlib.h>
 #include <unistd.h>
 #include <errno.h>
 #include <stdint.h>
 #include <string.h>
+#include <utime.h>
 
 /* Drivers */
 #include "pulp_mem_map.h"
@@ -51,8 +54,11 @@
 #include "stdout.h"
 
 /* FreeRTOS */
+#ifdef CONFIG_FREERTOS_KERNEL
 #include "FreeRTOS.h"
 #include "task.h"
+#endif
+
 #if !defined(configUSE_NEWLIB_REENTRANT) || (configUSE_NEWLIB_REENTRANT != 1)
 #warning "configUSE_NEWLIB_REENTRANT is unset or zero. This setting \
 is required for thread-safety of newlib sprintf, strtok, etc..."
@@ -132,7 +138,8 @@ void _exit(int exit_status)
 {
 	writew(exit_status | (1 << APB_SOC_STATUS_EOC_BIT),
 	       (uintptr_t)(PULP_APB_SOC_CTRL_ADDR + APB_SOC_CORESTATUS_OFFSET));
-	asm volatile("wfi");
+	for (;;)
+	    asm volatile("wfi");
 }
 
 int _faccessat(int dirfd, const char *file, int mode, int flags)
@@ -243,7 +250,7 @@ long _sysconf(int name)
 
 clock_t _times(struct tms *buf)
 {
-	return -1;
+	return 0;
 }
 
 int _unlink(const char *name)
@@ -324,10 +331,14 @@ void __malloc_lock(struct _reent *p)
 {
 	/* Make sure no mallocs inside ISRs */
 	/* configASSERT(!xPortIsInsideInterrupt()); */
+#ifdef CONFIG_FREERTOS_KERNEL
 	vTaskSuspendAll();
+#endif
 }
 
 void __malloc_unlock(struct _reent *p)
 {
+#ifdef CONFIG_FREERTOS_KERNEL
 	(void)xTaskResumeAll();
+#endif
 }
