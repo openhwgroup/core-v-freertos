@@ -21,10 +21,8 @@
 #include <assert.h>
 #include <stdlib.h>
 
-#include <FreeRTOS.h>
-#include "FreeRTOSConfig.h"
 
-#include "system_core_v_mcu_metal.h"
+#include "system_metal_conf.h"
 
 #include "fll.h"
 #include "irq.h"
@@ -53,10 +51,6 @@ __attribute__((section(".heap"), used)) uint8_t ucHeap[configTOTAL_HEAP_SIZE];
 uint32_t __heap_size = configTOTAL_HEAP_SIZE;
 
 uint32_t volatile system_core_clock = DEFAULT_SYSTEM_CLOCK;
-
-/* FreeRTOS task handling */
-BaseType_t xTaskIncrementTick(void);
-void vTaskSwitchContext(void);
 
 /* interrupt handling */
 void timer_irq_handler(void);
@@ -98,44 +92,9 @@ void system_core_clock_update()
 	system_core_clock = pi_fll_get_frequency(FLL_SOC, 0);
 }
 
-void system_core_clock_get(void)
+uint32_t system_core_clock_get(void)
 {
 	system_core_clock_update();
 	return system_core_clock;
 }
 
-void timer_irq_handler(void)
-{
-#warning requires critical section if interrupt nesting is used.
-
-	if (xTaskIncrementTick() != 0) {
-		vTaskSwitchContext();
-	}
-}
-
-void undefined_handler(void)
-{
-#ifdef __PULP_USE_LIBC
-	abort();
-#else
-	taskDISABLE_INTERRUPTS();
-	for(;;);
-#endif
-}
-
-void vPortSetupTimerInterrupt(void)
-{
-	extern int timer_irq_init(uint32_t ticks);
-
-	/* No CLINT so use the PULP timer to generate the tick interrupt. */
-	/* TODO: configKERNEL_INTERRUPT_PRIORITY - 1 ? */
-	timer_irq_init(ARCHI_REF_CLOCK / configTICK_RATE_HZ);
-	/* TODO: allow setting interrupt priority (to super high(?)) */
-	irq_enable(IRQ_FC_EVT_TIMER0_LO);
-}
-
-void vSystemIrqHandler(uint32_t mcause)
-{
-	extern void (*isr_table[32])(void);
-	isr_table[mcause & 0x1f]();
-}

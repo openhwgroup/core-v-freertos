@@ -21,3 +21,7 @@
 ROOT=$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)
 export FREERTOS_PROJ_ROOT="$ROOT"
 export FREERTOS_CONFIG_FAMILY="core-v-mcu"
+
+export CONFIG_TARGET="core-v-mcu"
+
+source "$ROOT/env/default-config.sh"
